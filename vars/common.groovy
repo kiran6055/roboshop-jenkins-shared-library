@@ -5,7 +5,7 @@ def compile() {
 
 
     if (app_lang == "maven") {
-        sh 'mvn package'
+        sh 'mvn clean package'
     }
 
 }
