@@ -3,9 +3,8 @@ def compile() {
         sh 'npm install'
     }
 
-
     if (app_lang == "maven") {
-        sh 'mvn clean package'
+        sh 'mvn package'
     }
 
 }
