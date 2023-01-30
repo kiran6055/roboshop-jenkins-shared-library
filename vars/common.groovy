@@ -4,7 +4,7 @@ def compile() {
     }
 
 
-    if (app - lang == "java") {
+    if (app_lang == "maven") {
         sh 'mvn package'
     }
 
