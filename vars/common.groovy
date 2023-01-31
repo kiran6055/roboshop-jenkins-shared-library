@@ -35,5 +35,5 @@ def unittests() {
 }
 
 def email(email_note) {
-  println email_note
+  mail bcc: '', body: 'Test', cc: '', from: 'kirankumar7163@gmail.com', replyTo: 'kirankumar.nagaraja@gmail.com', subject: 'Test From Jenkins', to: ''
 }
