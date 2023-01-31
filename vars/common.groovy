@@ -33,7 +33,5 @@ def unittests() {
     sh 'python3 -m unittest'
   }
 
-
-
 }
 
