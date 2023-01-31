@@ -20,8 +20,7 @@ def compile() {
 def unittests() {
   if (app_lang == "nodejs") {
     // developer is ,missing testcases in our projecct, so we are skipping test cases
-    sh 'npm test || true'
-    sh 'echo test cases'
+    sh 'npm test'
   }
 
 
@@ -35,3 +34,6 @@ def unittests() {
 
 }
 
+def email(email_note) {
+  println email_note
+}

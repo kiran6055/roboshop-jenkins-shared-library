@@ -1,43 +1,49 @@
 def call() {
-    pipeline {
+    try {
 
-        agent {
-            label 'JenkinsAgent'
-        }
+        pipeline {
 
-        stages {
+            agent {
+                label 'JenkinsAgent'
+            }
 
-            stage('Compile/Build') {
-                steps {
-                    script {
-                        common.compile()
+            stages {
+
+                stage('Compile/Build') {
+                    steps {
+                        script {
+                            common.compile()
+                        }
                     }
                 }
-            }
 
-            stage('Unit Tests') {
-                steps {
-                    script {
-                        common.unittests()
+                stage('Unit Tests') {
+                    steps {
+                        script {
+                            common.unittests()
+                        }
                     }
                 }
-            }
 
-            stage('Quality Control') {
-                steps {
-                    echo 'Quality Control'
+                stage('Quality Control') {
+                    steps {
+                        echo 'Quality Control'
+                    }
                 }
-            }
 
-            stage('Upload Code to Centralized Place') {
-                steps {
-                    echo 'Upload'
+                stage('Upload Code to Centralized Place') {
+                    steps {
+                        echo 'Upload'
+                    }
                 }
-            }
 
+
+            }
 
         }
-
+    } catch (Exception e) {
+      common.email("Failed")
     }
+
 }
 
