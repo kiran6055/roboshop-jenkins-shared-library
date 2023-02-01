@@ -33,7 +33,7 @@ def call() {
 
                 stage('Upload Code to Centralized Place') {
                     steps {
-                        script {} 'Upload'
+                       echo 'Upload'
                     }
                 }
 
