@@ -27,11 +27,12 @@ def call() {
 
                 stage('Quality Control') {
                     environment {
-                        SONAR_USER = 'S( script: 'aws ssm get-parameters --region us-east-1 --names sonarqube.user  --with-decryption --query Parameters[0].Value | sed \'s/"//g\')'
-                        SONAR_PASS = '$( script: 'aws ssm get-parameters --region us-east-1 --names sonarqube.pass  --with-decryption --query Parameters[0].Value | sed \'s/"//g\')'
-                        }
+                        SONAR_USER = '$(aws ssm get-parameters --region us-east-1 --names sonarqube.user  --with-decryption --query Parameters[0].Value | sed \'s/"//g\')'
+                        SONAR_PASS = '$(aws ssm get-parameters --region us-east-1 --names sonarqube.pass  --with-decryption --query Parameters[0].Value | sed \'s/"//g\')'
+                    }
                     steps {
-                        sh 'sonar-scanner -Dsonar.host.url=http://172.31.2.94:9000 -Dsonar.login=admin -Dsonar.password=admin123 -Dsonar.projectKey=cart'
+
+                        sh 'sonar-scanner -Dsonar.host.url=http://172.31.2.94:9000 -Dsonar.login=${SONAR_USER} -Dsonar.password=$SONAR_PASSWORD} -Dsonar.projectKey=cart'
                     }
                 }
 
