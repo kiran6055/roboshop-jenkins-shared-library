@@ -3,7 +3,7 @@ def call() {
     node('JenkinsAgent') {
       stage('checkout') {
         cleanWs()
-        git branch: 'main', url: "https://github.com/kirankumar7163/${component}"
+          git branch: 'main', url: "https://github.com/kirankumar7163/${component}"
         sh 'env'
       }
       stage('compile/build') {
