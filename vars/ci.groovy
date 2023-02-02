@@ -1,4 +1,7 @@
 def call() {
+  if (!env.sonar_extra_opt) {
+    env.sonar.extra_opt = " "
+  }
   try {
     node('JenkinsAgent') {
 
