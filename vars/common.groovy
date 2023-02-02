@@ -26,14 +26,14 @@ def unittests() {
 
 
   if (app_lang == "maven") {
-    sh 'mvn test || true'
+    sh 'mvn test'
   }
 
   if (app_lang == "python") {
-    sh 'python3 -m unittest || true'
+    sh 'python3 -m unittest'
   }
   if (app-lang == "golang") {
-    sh 'go test || true'
+    sh 'go test'
   }
 }
 
