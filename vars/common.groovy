@@ -24,6 +24,10 @@ def unittests() {
   if (app_lang == "python") {
     sh 'python3 -m unittest'
   }
+
+  if (app_lang == "golang") {
+    sh 'go test'
+  }
 }
 
 def email(email_note) {
