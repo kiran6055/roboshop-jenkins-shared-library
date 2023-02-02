@@ -10,7 +10,7 @@ def call() {
           common.compile()
       }
       stage ('unit test') {
-          common.unittest()
+          common.unittests()
       }
       stage('qualitycontrol') {
           SONAR_USER = '$(aws ssm get-parameters --region us-east-1 --names sonarqube.user  --with-decryption --query Parameters[0].Value | sed \'s/"//g\')'
