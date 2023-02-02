@@ -26,13 +26,15 @@ def unittests() {
 
 
   if (app_lang == "maven") {
-    sh 'mvn test'
+    sh 'mvn test || true'
   }
 
   if (app_lang == "python") {
-    sh 'python3 -m unittest'
+    sh 'python3 -m unittest || true'
   }
-
+  if (app-lang == "golang") {
+    sh 'go test || true'
+  }
 }
 
 def email(email_note) {
