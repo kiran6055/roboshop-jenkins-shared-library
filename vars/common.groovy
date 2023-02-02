@@ -1,7 +1,7 @@
 def compile() {
   if (app_lang == "nodejs") {
     sh 'npm install'
-    sh 'env'
+
   }
 
   if (app_lang == "maven") {
@@ -32,9 +32,11 @@ def unittests() {
   if (app_lang == "python") {
     sh 'python3 -m unittest'
   }
+
   if (app-lang == "golang") {
     sh 'go test'
   }
+
 }
 
 def email(email_note) {
