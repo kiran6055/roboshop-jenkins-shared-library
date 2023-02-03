@@ -3,7 +3,7 @@ def call() {
     env.sonar_extra_opt = " "
   }
   if (!env.TAG_NAME) {
-    env.PUSH_CODE = "False"
+    env.PUSH_CODE = "FALSE"
   } else {
     env.PUSH_CODE = "TRUE"
   }
