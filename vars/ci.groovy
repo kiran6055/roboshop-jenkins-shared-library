@@ -11,7 +11,7 @@ def call() {
   }
 
   try {
-    node('workstation') {
+    node('JenkinsAgent') {
 
       stage('Checkout') {
         cleanWs()
