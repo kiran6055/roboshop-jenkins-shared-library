@@ -2,6 +2,11 @@ def call() {
   if (!env.sonar_extra_opt) {
     env.sonar_extra_opt = " "
   }
+  if (!env.TAG_NAME) {
+    env.PUSH_CODE = "False"
+  } else {
+    env.PUSH_CODE = "TRUE"
+  }
   try {
     node('JenkinsAgent') {
 
@@ -27,10 +32,12 @@ def call() {
           sh "echo sonar scan"
         }
       }
-
-      stage('Upload Code to Centralized Place') {
-        echo 'upload'
+      if (env.PUSH_CODE == "TRUE") {
+        stage('Upload Code to Centralized Place') {
+          echo 'upload'
+        }
       }
+
 
     }
   } catch (Exception e) {
