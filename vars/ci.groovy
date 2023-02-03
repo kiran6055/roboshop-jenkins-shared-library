@@ -34,7 +34,7 @@ def call() {
       }
       if (env.PUSH_CODE == "TRUE") {
         stage('Upload Code to Centralized Place') {
-          echo 'upload'
+          sh 'echo upload'
         }
       }
 
