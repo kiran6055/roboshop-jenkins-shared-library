@@ -3,9 +3,9 @@ def call() {
     env.sonar_extra_opt = " "
   }
   if (!env.TAG_NAME) {
-    env.PUSH_CODE = "FALSE"
+    env.PUSH_CODE = "false"
   } else {
-    env.PUSH_CODE = "TRUE"
+    env.PUSH_CODE = "true"
   }
   try {
     node('JenkinsAgent') {
@@ -34,7 +34,7 @@ def call() {
       }
       if (env.PUSH_CODE == "TRUE") {
         stage('Upload Code to Centralized Place') {
-          sh 'echo upload'
+          echo 'Upload'
         }
       }
 
