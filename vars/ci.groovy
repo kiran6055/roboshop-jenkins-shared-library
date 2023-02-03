@@ -1,22 +1,25 @@
 def call() {
-  if (!env.sonar_extra_opt) {
-    env.sonar_extra_opt = " "
+
+  if(!env.SONAR_EXTRA_OPTS) {
+    env.SONAR_EXTRA_OPTS = " "
   }
+
   if(!env.TAG_NAME) {
     env.PUSH_CODE = "false"
   } else {
     env.PUSH_CODE = "true"
   }
-  try {
-    node('JenkinsAgent') {
 
-      stage('checkout') {
+  try {
+    node('workstation') {
+
+      stage('Checkout') {
         cleanWs()
-        git branch: 'main', url: "https://github.com/kirankumar7163/${component}"
+        git branch: 'main', url: "https://github.com/raghudevopsb70/${component}"
         sh 'env'
       }
 
-      stage('compile/build') {
+      stage('Compile/Build') {
         common.compile()
       }
 
@@ -25,13 +28,14 @@ def call() {
       }
 
       stage('Quality Control') {
-        SONAR_USER = '$(aws ssm get-parameters --region us-east-1 --names sonarqube.user  --with-decryption --query Parameters[0].Value | sed \'s/"//g\')'
-        SONAR_PASS = sh(script: 'aws ssm get-parameters --region us-east-1 --names sonarqube.password  --with-decryption --query Parameters[0].Value | sed \'s/"//g\'', returnStdout: true).trim()
+        SONAR_PASS = sh ( script: 'aws ssm get-parameters --region us-east-1 --names sonarqube.pass  --with-decryption --query Parameters[0].Value | sed \'s/"//g\'', returnStdout: true).trim()
+        SONAR_USER = sh ( script: 'aws ssm get-parameters --region us-east-1 --names sonarqube.user  --with-decryption --query Parameters[0].Value | sed \'s/"//g\'', returnStdout: true).trim()
         wrap([$class: 'MaskPasswordsBuildWrapper', varPasswordPairs: [[password: "${SONAR_PASS}", var: 'SECRET']]]) {
-          //sh "sonar-scanner -Dsonar.host.url=http://172.31.2.94:9000 -Dsonar.login=${SONAR_USER} -Dsonar.password=${SONAR_PASS} -Dsonar.projectKey=${component} -Dsonar.qualitygate.wait=true ${sonar_extra_opt}"
-          sh "echo sonar scan"
+          //sh "sonar-scanner -Dsonar.host.url=http://172.31.2.94:9000 -Dsonar.login=${SONAR_USER} -Dsonar.password=${SONAR_PASS} -Dsonar.projectKey=${component} -Dsonar.qualitygate.wait=true ${SONAR_EXTRA_OPTS}"
+          sh "echo Sonar Scan"
         }
       }
+
       if(env.PUSH_CODE == "true") {
         stage('Upload Code to Centralized Place') {
           echo 'Upload'
@@ -40,9 +44,11 @@ def call() {
 
 
     }
-  } catch (Exception e) {
-      common.email("Failed")
-  }
 
+  } catch(Exception e) {
+    common.email("Failed")
+  }
 }
+
+
 
