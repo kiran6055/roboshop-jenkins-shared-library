@@ -39,7 +39,6 @@ def call() {
           sh "echo Sonar Scan"
         }
       }
-
       if (app_lang == "maven") {
         stage('Build Package') {
           sh "mvn package && cp target/${component}-1.0.jar ${component}.jar"
