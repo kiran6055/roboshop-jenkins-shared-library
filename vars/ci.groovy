@@ -1,14 +1,14 @@
 def call() {
 
-  if(!env.SONAR_EXTRA_OPTS) {
+  if (!env.SONAR_EXTRA_OPTS) {
     env.SONAR_EXTRA_OPTS = " "
   }
 
-  if(!env.extraFiles) {
+  if (!env.extraFiles) {
     env.extraFiles = " "
   }
 
-  if(!env.TAG_NAME) {
+  if (!env.TAG_NAME) {
     env.PUSH_CODE = "false"
   } else {
     env.PUSH_CODE = "true"
@@ -46,7 +46,7 @@ def call() {
         }
       }
 
-      if(env.PUSH_CODE == "true") {
+      if (env.PUSH_CODE == "true") {
         stage('Upload Code to Centralized Place') {
           common.artifactPush()
         }
