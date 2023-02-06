@@ -44,10 +44,10 @@ def call() {
           sh "mvn package && cp target/${component}-1.0.jar ${component}.jar"
         }
       }
-
-
-      stage('Upload Code to Centralized Place') {
-          common.artifactPush()
+      if(env.PUSH_CODE == "TRUE"){
+        stage('Upload Code to Centralized Place') {
+          echo 'upload'
+        }
       }
 
 
