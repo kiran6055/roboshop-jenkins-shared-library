@@ -44,7 +44,7 @@ def call() {
           sh "mvn package && cp target/${component}-1.0.jar ${component}.jar"
         }
       }
-      if(env.PUSH_CODE == "TRUE"){
+      if(env.PUSH_CODE == "true"){
         stage('Upload Code to Centralized Place') {
           echo 'upload'
         }
