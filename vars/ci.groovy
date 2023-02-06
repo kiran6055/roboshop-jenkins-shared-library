@@ -45,11 +45,11 @@ def call() {
         }
       }
 
-      if(env.PUSH_CODE == "true") {
-        stage('Upload Code to Centralized Place') {
+
+      stage('Upload Code to Centralized Place') {
           common.artifactPush()
-        }
       }
+
 
 
     }
