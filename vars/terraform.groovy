@@ -8,7 +8,7 @@ def call () {
     }
 
     parameters {
-      string(name: 'Infra env', defaultValue: '', description: 'enter env like dev or prod')
+      string(name: 'INFRA_ENV', defaultValue: '', description: 'enter env like dev or prod')
     }
     stages {
       stage('terraform init') {
