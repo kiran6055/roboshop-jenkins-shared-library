@@ -3,7 +3,7 @@ def call () {
 
     agent {
       node {
-          label 'kiran'
+          label 'server'
       }
     }
 
