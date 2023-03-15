@@ -8,13 +8,18 @@ def call () {
     }
 
     parameters {
-      string(name: 'INFRA_ENV', defaultValue: '', description: 'enter env like dev or prod')
+      string(name: 'INFRA_ENV', defaultValue: '', description: 'Enter Env like dev or prod')
     }
+
     stages {
-      steps('terraform init') {
-        sh "terraform init -backend-config=env-${INFRA_ENV}/state.tfvars"
+
+      stage('Terraform init') {
+        steps {
+          sh "terraform init -backend-config=env-${INFRA_ENV}/state.tfvars"
+        }
+
       }
     }
 
-    }
   }
+}
