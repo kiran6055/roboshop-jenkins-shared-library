@@ -22,7 +22,7 @@ def call () {
           sh "terraform init -backend-config=env-${INFRA_ENV}/state.tfvars"
         }
         steps('Terraform apply') {
-          sh "terraform apply -auto-approve -var-file=env-${INFRA_ENV}/state.tfvars"
+          sh "terraform apply -auto-approve -var-file=env-${INFRA_ENV}/main.tfvars"
         }
 
       }
