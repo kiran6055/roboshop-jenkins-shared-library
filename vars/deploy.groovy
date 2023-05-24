@@ -5,7 +5,7 @@ def call () {
     }
     parameters {
       string(name: 'APP_ENV', defaultValue: '', description: 'Enter Env like dev or prod')
-      string(name: 'Action', defaultValue: '', description: 'Enter COMPONENT name')
+      string(name: 'component', defaultValue: '', description: 'Enter COMPONENT name')
       string(name: 'APP_VERSION', defaultValue: '', description: 'Enter Version number')
     }
 
