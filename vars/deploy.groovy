@@ -13,7 +13,7 @@ def call () {
       stage('RunDeployment') {
         steps {
           sh..
-            aws ssm put-parameter --name "${APP_ENV}.${COMPONENT}.APP_VERSION" -- type "string" --value "${APP_VERSION}" --overwrite
+                  aws ssm put-parameter --name "${APP_ENV}.${COMPONENT}.APP_VERSION" --type "String" --value "${APP_VERSION}" --overwrite
         }
       }
 
