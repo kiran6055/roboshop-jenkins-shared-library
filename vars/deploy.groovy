@@ -9,11 +9,11 @@ def call () {
       string(name: 'APP_VERSION', choices: ['apply', 'destroy'], description: 'Enter Version number')
     }
     stages {
-
-      stage('RunDeployment') {
+      stage('Run Deployment') {
         steps {
-          sh..
+          sh '''
             aws ssm put-parameter --name "${APP_ENV}.${COMPONENT}.APP_VERSION" --type "String" --value "${APP_VERSION}" --overwrite
+          '''
         }
       }
 
