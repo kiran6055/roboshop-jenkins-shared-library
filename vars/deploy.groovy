@@ -12,11 +12,13 @@ def call () {
     options {
       ansiColor('xterm')
     }
+
     environment {
       SSH=credentials('SSH')
     }
 
     stages {
+
       stage('Run Deployment') {
         steps {
           sh '''
