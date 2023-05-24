@@ -12,7 +12,7 @@ def call () {
     options {
       ansiColor('xterm')
     }
-    environement {
+    environment {
       SSH=credentials('SSH')
     }
 
