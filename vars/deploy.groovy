@@ -14,7 +14,7 @@ def call () {
     }
 
     environment {
-      SSH=credentials('SSH')
+      ssh=credentials('ssh')
     }
 
     stages {
@@ -25,7 +25,7 @@ def call () {
             aws ssm put-parameter --name "${APP_ENV}.${component}.APP_VERSION" --type "String" --value "${APP_VERSION}" --overwrite
             aws ec2 describe-instances  --filters "Name=tag:Name,Values=${APP_ENV}-${component}" | jq ".Reservations[].Instances[].PrivateIpAddress" >/tmp/hosts
             
-            ansible-playbook -i /tmp/hosts deploy.yml -e component=${component} -e env=${APP_ENV} -e ansible_user=${SSH_USR} -e ansible_password=${SSH_PSW}
+            ansible-playbook -i /tmp/hosts deploy.yml -e component=${component} -e env=${APP_ENV} -e ansible_user=${ssh_USR} -e ansible_password=${ssh_PSW}
 
           '''
         }
