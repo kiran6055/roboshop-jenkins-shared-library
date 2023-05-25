@@ -24,7 +24,7 @@ def call () {
           sh '''
             aws ssm put-parameter --name "${APP_ENV}.${component}.APP_VERSION" --type "String" --value "${APP_VERSION}" --overwrite
             #this is for immutable approach
-            aws autoscaling start-instance-refresh --auto-scaling-group-name ${env}-${component} --preferences '{"InstanceWarmup": 240, "MinHealthyPercentage": 50, "SkipMatching: false,}\'
+            aws autoscaling start-instance-refresh --auto-scaling-group-name ${APP_ENV}-${component} --preferences '{"InstanceWarmup": 240, "MinHealthyPercentage": 50, "SkipMatching: false,}\'
            
            
             # this is for mutable approach
