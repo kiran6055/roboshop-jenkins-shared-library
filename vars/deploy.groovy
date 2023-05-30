@@ -23,6 +23,7 @@ def call () {
         steps {
           sh '''
             aws ssm put-parameter --name "${APP_ENV}.${component}.APP_VERSION" --type "String" --value "${APP_VERSION}" --overwrite
+            
             #this is for immutable approach
             aws autoscaling start-instance-refresh --auto-scaling-group-name ${APP_ENV}-${component} --preferences '{"InstanceWarmup": 120, "MinHealthyPercentage": 50, "SkipMatching": false}'
            
