@@ -1,17 +1,17 @@
 def compile() {
-  if (app_lang == "nodejs") {
-    sh 'npm install'
-  }
+//  if (app_lang == "nodejs") {
+//    sh 'npm install'
+//  }
 
-  if (app_lang == "maven") {
-    sh "mvn clean compile"
-  }
-  if (app_lang == "golang") {
-    sh "go mod init dispatch"
-    sh "go get"
-    sh "go build"
-  }
-
+//  if (app_lang == "maven") {
+//    sh "mvn clean compile"
+//  }
+//  if (app_lang == "golang") {
+//    sh "go mod init dispatch"
+//    sh "go get"
+//    sh "go build"
+//  }
+ sh "docker hbuild -t ${component} ."
 }
 
 def unittests() {
