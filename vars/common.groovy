@@ -11,7 +11,7 @@ def compile() {
 //    sh "go get"
 //    sh "go build"
 //  }
- sh "docker hbuild -t ${component} ."
+ sh "docker build -t ${component} ."
 }
 
 def unittests() {
