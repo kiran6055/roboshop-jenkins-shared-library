@@ -19,7 +19,7 @@ def call() {
 
       stage('Checkout') {
         cleanWs()
-        git branch: 'main', url: "https://github.com/kiran6055/${component}"
+        git branch: 'main', url: "https://github.com/kiran6055/${COMPONENT}"
         sh 'env'
       }
 
@@ -37,13 +37,13 @@ def call() {
         print SONAR_PASS
         print SONAR_USER
         wrap([$class: 'MaskPasswordsBuildWrapper', varPasswordPairs: [[password: "${SONAR_PASS}", var: 'SECRET']]]) {
-         // sh "sonar-scanner -Dsonar.host.url=http://172.31.29.123:9000 -Dsonar.login=${SONAR_USER} -Dsonar.password=${SONAR_PASS} -Dsonar.projectKey=${component} -Dsonar.qualitygate.wait=true ${SONAR_EXTRA_OPTS}"
+         // sh "sonar-scanner -Dsonar.host.url=http://172.31.29.123:9000 -Dsonar.login=${SONAR_USER} -Dsonar.password=${SONAR_PASS} -Dsonar.projectKey=${COMPONENT} -Dsonar.qualitygate.wait=true ${SONAR_EXTRA_OPTS}"
           sh "echo Sonar Scan"
         }
       }
       if(app_lang == "maven") {
         stage('Build Package') {
-          sh "mvn package && cp target/${component}-1.0.jar ${component}.jar"
+          sh "mvn package && cp target/${COMPONENT}-1.0.jar ${COMPONENT}.jar"
         }
       }
       if(env.PUSH_CODE == "true"){
