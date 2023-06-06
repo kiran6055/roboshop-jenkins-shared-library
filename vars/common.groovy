@@ -13,7 +13,8 @@ def compile() {
   }
 
   // this used to build the node JS in docker images below after -t which is copied from amazonecr like different componet start from number paster here tag-name which is already given variable
- sh "docker build -t 086083061026.dkr.ecr.us-east-1.amazonaws.com/${COMPONENT}:${TAG_NAME} ."
+  sh "ls -al"
+  sh "docker build -t 086083061026.dkr.ecr.us-east-1.amazonaws.com/${COMPONENT}:${TAG_NAME} ."
 
 }
 
