@@ -4,7 +4,7 @@ def compile() {
   }
 
   if (app_lang == "maven") {
-    sh "mvn clean compile"
+    sh "mvn clean compile package"
   }
   if (app_lang == "golang") {
     sh "go mod init dispatch"
