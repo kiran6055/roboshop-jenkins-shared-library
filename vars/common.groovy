@@ -5,6 +5,7 @@ def compile() {
 
   if (app_lang == "maven") {
     sh "mvn clean compile package"
+// here shipping is written in java 11 so maven is used for build file be in target/shipping-1.o.jar to avoid error in docker build we are docker mvn clean compile package her
   }
   if (app_lang == "golang") {
     sh "go mod init dispatch"
