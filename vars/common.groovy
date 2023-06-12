@@ -48,7 +48,7 @@ def artifactPush() {
 //  sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 086083061026.dkr.ecr.us-east-1.amazonaws.com"
 //  sh "docker push 086083061026.dkr.ecr.us-east-1.amazonaws.com/${COMPONENT}:${TAG_NAME}"
 
-// this is used to push the articat to remote repository like sona nexus
+// this is used to push the articat to remote repository like nexus
   sh "echo ${TAG_NAME} >VERSION"
 
   if (app_lang == "nodejs") {
