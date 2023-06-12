@@ -29,8 +29,8 @@ def call () {
            
            
             # this is for mutable approach
-            #aws ec2 describe-instances  --filters "Name=tag:Name,Values=${APP_ENV}-${COMPONENT}" | jq ".Reservations[].Instances[].PrivateIpAddress" >/tmp/hosts
-            #ansible-playbook -i /tmp/hosts deploy.yml -e component=${component} -e env=${APP_ENV} -e ansible_user=${ssh_USR} -e ansible_password=${ssh_PSW}
+            aws ec2 describe-instances  --filters "Name=tag:Name,Values=${APP_ENV}-${COMPONENT}" | jq ".Reservations[].Instances[].PrivateIpAddress" >/tmp/hosts
+            ansible-playbook -i /tmp/hosts deploy.yml -e COMPONENT=${COMPONENT} -e ENV=${APP_ENV} -e ansible_user=${ssh_USR} -e ansible_password=${ssh_PSW}
 
           '''
         }
